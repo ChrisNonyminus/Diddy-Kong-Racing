@@ -1620,7 +1620,7 @@ GLOBAL_ASM("asm/non_matchings/objects/func_8002342C.s")
 s32 func_80023568(void) {
     if (D_8011AD3C != 0) {
         return D_8011AD24[1] + 1;
-    } else if (get_current_level_race_type() == RACE_TYPE_BOSS) {
+    } else if (get_current_level_race_type() == RACETYPE_BOSS) {
         return D_8011AD24[1] + 1;
     }
     return 0;
@@ -1639,38 +1639,38 @@ GLOBAL_ASM("asm/non_matchings/objects/func_800235DC.s")
 void run_object_init_func(Object *obj, void *entry, s32 arg2) {
     obj->behaviorId = obj->segment.header->behaviorId;
     switch (obj->behaviorId - 1) { // Why the minus 1?
-        case 0:
+        case OBJECT_BEHAVIOR_RACER - 1:
             obj_init_racer(obj, (LevelObjectEntry_Racer *)entry);
             break;
-        case 1:
+        case OBJECT_BEHAVIOR_SCENERY - 1:
             obj_init_scenery(obj, (LevelObjectEntry_Scenery*)entry);
             break;
-        case 2:
+        case OBJECT_BEHAVIOR_FISH - 1:
             obj_init_fish(obj, (LevelObjectEntry_Fish *)entry);
             break;
-        case 3:
+        case OBJECT_BEHAVIOR_ANIMATOR - 1:
             obj_init_animator(obj, (LevelObjectEntry_Animator *)entry, arg2);
             break;
-        case 5:
+        case OBJECT_BEHAVIOR_SMOKE - 1:
             obj_init_smoke(obj, (LevelObjectEntry_Smoke *)entry);
             break;
-        case 24:
+        case OBJECT_BEHAVIOR_25 - 1:
             obj_init_unknown25(obj, (LevelObjectEntry_Unknown25 *)entry);
             break;
-        case 21:
+        case OBJECT_BEHAVIOR_BOMBEXPLOSION - 1:
             obj_init_bombexplosion(obj, (LevelObjectEntry_BombExplosion *)entry);
             break;
-        case 6:
+        case OBJECT_BEHAVIOR_EXIT - 1:
             obj_init_exit(obj, (LevelObjectEntry_Exit *)entry);
             break;
-        case 7:
+        case OBJECT_BEHAVIOR_AUDIO - 1:
             obj_init_audio(obj, (LevelObjectEntry_Audio *)entry);
             break;
-        case 8:
-        case 18:
+        case OBJECT_BEHAVIOR_AUDIOLINE - 1:
+        case OBJECT_BEHAVIOR_AUDIOSEQLINE - 1:
             obj_init_audioline(obj, (LevelObjectEntry_AudioLine *)entry);
             break;
-        case 26:
+        case OBJECT_BEHAVIOR_AUDIOREVERB - 1:
             obj_init_audioreverb(obj, (LevelObjectEntry_AudioReverb *)entry);
             break;
         case 9:

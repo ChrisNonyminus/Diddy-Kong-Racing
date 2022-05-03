@@ -23,6 +23,8 @@ Builder::Builder(std::string srcPath, std::string dstPath) {
             BuildMenuText(srcPath, dstPath);
         } else if (type == "Fonts") {
             BuildFonts(srcPath, dstPath);
+        } else if (type == "LevelObjectTranslationTable") {
+            BuildLevelObjectTranslationTable(srcPath, dstPath);
         } else if (type == "") {
             display_error_and_abort("No type found for \"", srcPath, "\".\nMake sure the \"type\" property is defined in the json file!");
         } else {

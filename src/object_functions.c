@@ -2236,7 +2236,123 @@ void obj_init_weaponballoon(Object *obj, LevelObjectEntry_WeaponBalloon *entry) 
     }
 }
 
+#ifdef NON_MATCHING
+#define WEAPON_BALLOON_RADIUS 45
+
+void obj_loop_weaponballoon(Object *obj, s32 speed) {
+    Object *racerObj;
+    Object_Racer *racerObj64;
+    Object_WeaponBalloon *obj64;
+    s32 phi_a2;
+    s8 temp;
+    s8 prev;
+    s8 sp2D;
+    s8 newWeaponCount;
+    s8* weaponEntries;
+    s16 playerIndex;
+    s8 temp2;
+    
+    obj64 = (Object_WeaponBalloon*)obj->unk64;
+    obj->segment.trans.scale = obj64->unk0 * (1.0 - obj64->unk4 / 90.0f);
+    if (obj->segment.trans.scale < 0.001) {
+        obj->segment.trans.scale = 0.001f;
+    }
+    if (obj->segment.trans.scale < 0.1) {
+        obj->segment.trans.unk6 |= 0x4000;
+    } else {
+        obj->segment.trans.unk6 &= 0xBFFF;
+    }
+    if (obj->unk7C.word > 0) {
+        obj->unk74 = 1;
+        func_800AFC3C(obj, speed);
+        obj->unk7C.word -= speed;
+    }
+    if (obj64->unk4 != 0) {
+        if (obj64->unk4 != 90 || obj->unk4C->unk13 >= WEAPON_BALLOON_RADIUS) {
+            obj64->unk4 = (obj64->unk4 - speed) - speed;
+        }
+        if (obj64->unk4 < 0) {
+            obj64->unk4 = 0;
+        }
+    } else {
+        if (obj->unk4C->unk13 < WEAPON_BALLOON_RADIUS) {
+            racerObj = obj->unk4C->unk0;
+            if (racerObj != NULL && racerObj->segment.header->behaviorId == 1) {
+                racerObj64 = racerObj->unk64;
+                if (racerObj64->unk1D6 < 5 || racerObj64->playerIndex != -1) {
+                    temp2 = racerObj64->balloon_type;
+                    racerObj64->balloon_type = (s8) obj->unk78;
+                    if (temp2 == racerObj64->balloon_type && racerObj64->balloon_quantity != 0) {
+                        // If the previous balloon was the same type, then increase the level.
+                        racerObj64->balloon_level++;
+                    } else {
+                        // If the previous balloon was a different type, or if the count was 0, then reset back to the first level.
+                        racerObj64->balloon_level = 0;
+                    }
+                    if (get_current_level_race_type() & 0x40) {
+                        // Limit powerups to only the 2nd level in challenge maps.
+                        if (racerObj64->balloon_level >= 2) {
+                            racerObj64->balloon_level = 1;
+                        }
+                        // If the weapon type is Trap (Green balloon), then instantly make it the 2nd level (Bomb).
+                        if (racerObj64->balloon_type == 2) {
+                            racerObj64->balloon_level = 1;
+                        }
+                    }
+                    sp2D = 3;
+                    if (get_filtered_cheats() & CHEAT_MAXIMUM_POWER_UP) {
+                        // Instantly go to the 3rd level of the weapon.
+                        racerObj64->balloon_level = 2;
+                    }
+                    if (racerObj64->balloon_level >= 3) {
+                        racerObj64->balloon_level = 2;
+                        sp2D = 2;
+                    }
+                    weaponEntries = (s8*)get_misc_asset(12);
+                    prev = weaponEntries[(racerObj64->balloon_type * 10) + (racerObj64->balloon_level * 2) + 1];
+                    newWeaponCount = prev;
+                    racerObj64->unk209 |= 1;
+                    prev = racerObj64->balloon_quantity; // Regalloc issue here, needs to use a2.
+                    racerObj64->balloon_quantity = newWeaponCount;
+                    if (get_number_of_active_players() < 2) {
+                        obj->unk7C.word = 16;
+                    }
+
+                    // This block is probably audio related.
+                    playerIndex = racerObj64->playerIndex;
+                    if (playerIndex == -1) { // Is the racer AI controlled?
+                        func_80009558(14, obj->segment.trans.x_position, obj->segment.trans.y_position, obj->segment.trans.z_position, 4, 0);
+                    } else if (sp2D == racerObj64->balloon_level) {
+                        if (racerObj64->unk1D8 == 0) {
+                            if (prev != racerObj64->balloon_quantity) {
+                                func_800A7484(318, 1.0f, playerIndex);
+                                phi_a2 = racerObj64->balloon_level;
+                                if (racerObj64->balloon_level >= 3) {
+                                    phi_a2 = 2;
+                                }
+                                func_80001D04(160 + phi_a2, NULL);
+                            } else {
+                                func_80009558(14, obj->segment.trans.x_position, obj->segment.trans.y_position, obj->segment.trans.z_position, 4, 0);
+                            }
+                        }
+                    } else if (racerObj64->unk1D8 == 0) {
+                        if (racerObj64->balloon_level > 0) {
+                            func_800A7484(318, 1.0f, playerIndex);
+                        }
+                        func_80001D04(160 + racerObj64->balloon_level, NULL);
+                    }
+                    
+                    obj->unk74 = 1;
+                    func_800AFC3C(obj, speed);
+                    obj64->unk4 = 90;
+                }
+            }
+        }
+    }
+}
+#else
 GLOBAL_ASM("asm/non_matchings/unknown_032760/obj_loop_weaponballoon.s")
+#endif
 
 void obj_init_wballoonpop(UNUSED Object *obj, UNUSED LevelObjectEntry_WBalloonPop *entry) {
 }

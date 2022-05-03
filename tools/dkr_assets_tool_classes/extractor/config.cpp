@@ -72,7 +72,7 @@ void ExtractConfig::extract_code_sections(int &romOffset) {
         for(int j = 0; j < numFiles; j++) {
             json::JSON file = files[j];
             int length = std::stoul(file["length"].ToString(), nullptr, 16);
-            extractions.push_back(ExtractInfo(key, type, folder, file["filename"].ToString(), 
+            extractionsMap[0].push_back(ExtractInfo(key, type, folder, file["filename"].ToString(), 
                 rom->get_bytes_from_range(romOffset, length)));
             romOffset += length;
         }
@@ -192,6 +192,18 @@ void ExtractConfig::extract_asset_sections(int &romOffset) {
         std::string folder = this->outBaseDirectory + "/" + section["folder"].ToString();
         std::string type = section["type"].ToString();
         std::string build_id = section["build-id"].ToString();
+
+        int extractGroup = 0;
+
+        if(section.hasKey("group")) {
+            extractGroup = section["group"].ToInt();
+        }
+
+        if (std::find(extractionKeys.begin(), extractionKeys.end(), extractGroup) == extractionKeys.end()) {
+            extractionKeys.push_back(extractGroup);
+            sort(extractionKeys.begin(), extractionKeys.end());
+            extractionsMap[extractGroup] = std::vector<ExtractInfo>();
+        }
         
         if(type != "NoExtract") {
             create_directory(folder);
@@ -271,7 +283,7 @@ void ExtractConfig::extract_asset_sections(int &romOffset) {
                     (*tags)["flip-texture_" + key] = section["flip-textures"][j].ToInt() == 1 ? "true" : "false";
                 }
                 
-                extractions.push_back(ExtractInfo(key, type, folder, filename, sectionFiles[j], tags));
+                extractionsMap[extractGroup].push_back(ExtractInfo(key, type, folder, filename, sectionFiles[j], tags));
             }
             
             if(type == "GameText") {
@@ -293,7 +305,7 @@ void ExtractConfig::extract_asset_sections(int &romOffset) {
                     filename = filenameStream.str();
                 }
                 sectionOut["filename"] = filename + get_extension_from_type(type);
-                extractions.push_back(ExtractInfo(build_id, type, folder, filename, sectionsData[i]));
+                extractionsMap[extractGroup].push_back(ExtractInfo(build_id, type, folder, filename, sectionsData[i]));
 
                 if(type == "Fonts") {
                     //sectionOut["fonts"] = json::Object();
@@ -331,51 +343,61 @@ void write_vanilla_warning_file(std::string baseDirectory) {
 }
 
 void ExtractConfig::execute_extraction() {
-    // These braces are important, because I want the ThreadPool to call its destructor by going out of scope.
-    {
-        ThreadPool pool(std::thread::hardware_concurrency()); 
-        //ThreadPool pool(1);
-        
-        for(int i = 0; i < extractions.size(); i++) {
-            std::string key = extractions[i].key;
-            std::string type = extractions[i].type;
-            std::string folder = extractions[i].folder;
-            std::string filename = extractions[i].filename;
-            std::vector<uint8_t> data = extractions[i].data;
-            std::unordered_map<std::string, std::string> *tags = extractions[i].tags;
-            pool.enqueue([this, key, type, folder, filename, data, tags] {
-                std::string outFilepath = folder + "/" + filename;
-                
-                if(type == "MenuText") {
-                    ExtractMenuText(key, data, outFilepath + ".json", tags);
-                } else if(type == "GameText") {
-                    ExtractGameText(key, data, outFilepath + ".json", tags);
-                } else if(type == "TTGhosts") {
-                    ExtractTTGhost(key, data, outFilepath + ".json", configJSON);
-                } else if(type == "LevelNames") {
-                    ExtractLevelName(key, data, outFilepath + ".json");
-                } else if(type == "LevelHeaders") {
-                    ExtractLevelHeader(key, data, outFilepath + ".json");
-                } else if(type == "Textures") {
-                    ExtractTextures(key, data, outFilepath + ".json", tags);
-                } else if(type == "Sprites") {
-                    ExtractSprite(key, data, outFilepath + ".json", configJSON);
-                } else if(type == "Fonts") {
-                    ExtractFonts(key, data, outFilepath + ".json", folder, configJSON);
-                } else if(is_binary_type(type)) {
-                    ExtractBinary(key, data, outFilepath + ".bin");
-                } else if(is_compressed_type(type)) {
-                    ExtractCompressed(key, data, outFilepath + ".cbin");
-                } else if(type == "Empty") {
-                } else if(type != "NoExtract") {
-                    display_error_and_abort("Unknown extraction type: ", type);
-                }
-            });
+    for(int j = 0; j < extractionKeys.size(); j++) {
+        std::vector<ExtractInfo> extractions = extractionsMap[extractionKeys[j]];
+
+        // These braces are important, because I want the ThreadPool to call its destructor by going out of scope.
+        {
+            ThreadPool pool(std::thread::hardware_concurrency()); 
+            //ThreadPool pool(1);
+            
+            for(int i = 0; i < extractions.size(); i++) {
+                std::string key = extractions[i].key;
+                std::string type = extractions[i].type;
+                std::string folder = extractions[i].folder;
+                std::string filename = extractions[i].filename;
+                std::vector<uint8_t> data = extractions[i].data;
+                std::unordered_map<std::string, std::string> *tags = extractions[i].tags;
+                pool.enqueue([this, key, type, folder, filename, data, tags] {
+                    std::string outFilepath = folder + "/" + filename;
+                    
+                    if(type == "MenuText") {
+                        ExtractMenuText(key, data, outFilepath + ".json", tags);
+                    } else if(type == "GameText") {
+                        ExtractGameText(key, data, outFilepath + ".json", tags);
+                    } else if(type == "TTGhosts") {
+                        ExtractTTGhost(key, data, outFilepath + ".json", configJSON);
+                    } else if(type == "LevelNames") {
+                        ExtractLevelName(key, data, outFilepath + ".json");
+                    } else if(type == "LevelHeaders") {
+                        ExtractLevelHeader(key, data, outFilepath + ".json");
+                    } else if(type == "Textures") {
+                        ExtractTextures(key, data, outFilepath + ".json", tags);
+                    } else if(type == "Sprites") {
+                        ExtractSprite(key, data, outFilepath + ".json", configJSON);
+                    } else if(type == "Fonts") {
+                        ExtractFonts(key, data, outFilepath + ".json", folder, configJSON);
+                    } else if(type == "LevelObjectTranslationTable") {
+                        ExtractLevelObjectTranslationTable(key, data, outFilepath + ".json", folder, configJSON);
+                    } else if(is_binary_type(type)) {
+                        ExtractBinary(key, data, outFilepath + ".bin");
+                    } else if(is_compressed_type(type)) {
+                        ExtractCompressed(key, data, outFilepath + ".cbin");
+                    } else if(type == "Empty") {
+                    } else if(type != "NoExtract") {
+                        display_error_and_abort("Unknown extraction type: ", type);
+                    }
+                });
+            }
         }
     }
 }
 
 void ExtractConfig::extract() {
+    extractionsMap[0] = std::vector<ExtractInfo>();
+    extractionKeys.push_back(0);
+
+
     int romOffset = 0;
     extract_code_sections(romOffset);
     extract_asset_sections(romOffset);

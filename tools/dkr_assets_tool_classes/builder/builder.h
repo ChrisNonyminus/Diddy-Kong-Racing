@@ -15,6 +15,7 @@
 #include "build_files/build_gametext.h"
 #include "build_files/build_levelname.h"
 #include "build_files/build_levelheader.h"
+#include "build_files/build_levelobjtranstable.h"
 #include "build_files/build_menutext.h"
 #include "build_files/build_sprite.h"
 #include "build_files/build_texture.h"
