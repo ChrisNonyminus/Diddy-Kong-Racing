@@ -1638,261 +1638,261 @@ GLOBAL_ASM("asm/non_matchings/objects/func_800235DC.s")
 
 void run_object_init_func(Object *obj, void *entry, s32 arg2) {
     obj->behaviorId = obj->segment.header->behaviorId;
-    switch (obj->behaviorId - 1) { // Why the minus 1?
-        case OBJECT_BEHAVIOR_RACER - 1:
+    switch (obj->behaviorId) {
+        case OBJECT_BEHAVIOR_RACER:
             obj_init_racer(obj, (LevelObjectEntry_Racer *)entry);
             break;
-        case OBJECT_BEHAVIOR_SCENERY - 1:
+        case OBJECT_BEHAVIOR_SCENERY:
             obj_init_scenery(obj, (LevelObjectEntry_Scenery*)entry);
             break;
-        case OBJECT_BEHAVIOR_FISH - 1:
+        case OBJECT_BEHAVIOR_FISH:
             obj_init_fish(obj, (LevelObjectEntry_Fish *)entry);
             break;
-        case OBJECT_BEHAVIOR_ANIMATOR - 1:
+        case OBJECT_BEHAVIOR_ANIMATOR:
             obj_init_animator(obj, (LevelObjectEntry_Animator *)entry, arg2);
             break;
-        case OBJECT_BEHAVIOR_SMOKE - 1:
+        case OBJECT_BEHAVIOR_SMOKE:
             obj_init_smoke(obj, (LevelObjectEntry_Smoke *)entry);
             break;
-        case OBJECT_BEHAVIOR_25 - 1:
+        case OBJECT_BEHAVIOR_25:
             obj_init_unknown25(obj, (LevelObjectEntry_Unknown25 *)entry);
             break;
-        case OBJECT_BEHAVIOR_BOMBEXPLOSION - 1:
+        case OBJECT_BEHAVIOR_BOMBEXPLOSION:
             obj_init_bombexplosion(obj, (LevelObjectEntry_BombExplosion *)entry);
             break;
-        case OBJECT_BEHAVIOR_EXIT - 1:
+        case OBJECT_BEHAVIOR_EXIT:
             obj_init_exit(obj, (LevelObjectEntry_Exit *)entry);
             break;
-        case OBJECT_BEHAVIOR_AUDIO - 1:
+        case OBJECT_BEHAVIOR_AUDIO:
             obj_init_audio(obj, (LevelObjectEntry_Audio *)entry);
             break;
-        case OBJECT_BEHAVIOR_AUDIOLINE - 1:
-        case OBJECT_BEHAVIOR_AUDIOSEQLINE - 1:
+        case OBJECT_BEHAVIOR_AUDIOLINE:
+        case OBJECT_BEHAVIOR_AUDIOSEQLINE:
             obj_init_audioline(obj, (LevelObjectEntry_AudioLine *)entry);
             break;
-        case OBJECT_BEHAVIOR_AUDIOREVERB - 1:
+        case OBJECT_BEHAVIOR_AUDIOREVERB:
             obj_init_audioreverb(obj, (LevelObjectEntry_AudioReverb *)entry);
             break;
-        case 9:
+        case OBJECT_BEHAVIOR_CAMERACONTROL:
             obj_init_cameracontrol(obj, (LevelObjectEntry_CameraControl *)entry);
             break;
-        case 10:
+        case OBJECT_BEHAVIOR_SETUPPOINT:
             obj_init_setuppoint(obj, (LevelObjectEntry_SetupPoint *)entry);
             break;
-        case 11:
+        case OBJECT_BEHAVIOR_DINO_WHALE:
             obj_init_dino_whale(obj, (LevelObjectEntry_Dino_Whale *)entry);
             break;
-        case 12:
+        case OBJECT_BEHAVIOR_CHECKPOINT:
             obj_init_checkpoint(obj, (LevelObjectEntry_Checkpoint *)entry, arg2);
             break;
-        case 29:
+        case OBJECT_BEHAVIOR_MODECHANGE:
             obj_init_modechange(obj, (LevelObjectEntry_ModeChange *)entry);
             break;
-        case 40:
+        case OBJECT_BEHAVIOR_BONUS:
             obj_init_bonus(obj, (LevelObjectEntry_Bonus *)entry);
             break;
-        case 13:
+        case OBJECT_BEHAVIOR_DOOR:
             obj_init_door(obj, (LevelObjectEntry_Door *)entry);
             break;
-        case 110:
+        case OBJECT_BEHAVIOR_TTDOOR:
             obj_init_ttdoor(obj, (LevelObjectEntry_TTDoor *)entry);
             break;
-        case 14:
+        case OBJECT_BEHAVIOR_FOGCHANGER:
             obj_init_fogchanger(obj, (LevelObjectEntry_FogChanger *)entry);
             break;
-        case 15:
+        case OBJECT_BEHAVIOR_AINODE:
             obj_init_ainode(obj, (LevelObjectEntry_AiNode *)entry);
             break;
-        case 16:
+        case OBJECT_BEHAVIOR_WEAPONBALLOON:
             obj_init_weaponballoon(obj, (LevelObjectEntry_WeaponBalloon *)entry);
             break;
-        case 22:
+        case OBJECT_BEHAVIOR_WBALLOONPOP:
             obj_init_wballoonpop(obj, (LevelObjectEntry_WBalloonPop *)entry);
             break;
-        case 4:
-        case 17:
+        case OBJECT_BEHAVIOR_WEAPON_TRAP:
+        case OBJECT_BEHAVIOR_WEAPON_MISSLE:
             obj_init_weapon(obj, (LevelObjectEntry_Weapon *)entry);
             break;
-        case 25:
+        case OBJECT_BEHAVIOR_SKYCONTROL:
             obj_init_skycontrol(obj, (LevelObjectEntry_SkyControl *)entry);
             break;
-        case 27:
+        case OBJECT_BEHAVIOR_TORCH_MIST:
             obj_init_torch_mist(obj, (LevelObjectEntry_Torch_Mist *)entry);
             break;
-        case 28:
+        case OBJECT_BEHAVIOR_TEXSCROLL:
             obj_init_texscroll(obj, (LevelObjectEntry_TexScroll *)entry, arg2);
             break;
-        case 30:
+        case OBJECT_BEHAVIOR_STOPWATCHMAN:
             obj_init_stopwatchman(obj, (LevelObjectEntry_StopWatchMan *)entry);
             break;
-        case 31:
+        case OBJECT_BEHAVIOR_BANANA:
             obj_init_banana(obj, (LevelObjectEntry_Banana *)entry);
             break;
-        case 32:
+        case OBJECT_BEHAVIOR_RGBALIGHT:
             obj_init_rgbalight(obj, (LevelObjectEntry_RgbaLight *)entry, arg2);
             break;
-        case 35:
+        case OBJECT_BEHAVIOR_BUOY_PIRATESHOP:
             obj_init_buoy_pirateship(obj, (LevelObjectEntry_Buoy_PirateShip *)entry, arg2);
             break;
-        case 66:
+        case OBJECT_BEHAVIOR_LOG:
             obj_init_log(obj, (LevelObjectEntry_Log *)entry, arg2);
             break;
-        case 36:
+        case OBJECT_BEHAVIOR_WEATHER:
             obj_init_weather(obj, (LevelObjectEntry_Weather *)entry);
             break;
-        case 37:
+        case OBJECT_BEHAVIOR_BRIDGE_WHALERAMP:
             obj_init_bridge_whaleramp(obj, (LevelObjectEntry_Bridge_WhaleRamp *)entry);
             break;
-        case 38:
+        case OBJECT_BEHAVIOR_RAMPSWITCH:
             obj_init_rampswitch(obj, (LevelObjectEntry_RampSwitch *)entry);
             break;
-        case 39:
+        case OBJECT_BEHAVIOR_SEAMONSTER:
             obj_init_seamonster(obj, (LevelObjectEntry_SeaMonster *)entry);
             break;
-        case 42:
+        case OBJECT_BEHAVIOR_LENSFLARE:
             obj_init_lensflare(obj, (LevelObjectEntry_LensFlare *)entry);
             break;
-        case 43:
+        case OBJECT_BEHAVIOR_LENSFLARESWITCH:
             obj_init_lensflareswitch(obj, (LevelObjectEntry_LensFlareSwitch *)entry);
             break;
-        case 44:
+        case OBJECT_BEHAVIOR_COLLECTEGG:
             obj_init_collectegg(obj, (LevelObjectEntry_CollectEgg *)entry);
             break;
-        case 45:
+        case OBJECT_BEHAVIOR_EGGCREATOR:
             obj_init_eggcreator(obj, (LevelObjectEntry_EggCreator *)entry);
             break;
-        case 46:
+        case OBJECT_BEHAVIOR_CHARACTERFLAG:
             obj_init_characterflag(obj, (LevelObjectEntry_CharacterFlag *)entry);
             break;
-        case 48:
+        case OBJECT_BEHAVIOR_ANIMATION:
             obj_init_animation(obj, (LevelObjectEntry_Animation *)entry);
             break;
-        case 51:
+        case OBJECT_BEHAVIOR_INFOPOINT:
             obj_init_infopoint(obj, (LevelObjectEntry_InfoPoint *)entry);
             break;
-        case 54:
+        case OBJECT_BEHAVIOR_TRIGGER:
             obj_init_trigger(obj, (LevelObjectEntry_Trigger *)entry);
             break;
-        case 56:
-        case 92:
+        case OBJECT_BEHAVIOR_AIRZIPPER:
+        case OBJECT_BEHAVIOR_WATERZIPPER:
             obj_init_airzippers_waterzippers(obj, (LevelObjectEntry_AirZippers_WaterZippers *)entry);
             break;
-        case 57:
+        case OBJECT_BEHAVIOR_58:
             obj_init_unknown58(obj, (LevelObjectEntry_Unknown58 *)entry);
             break;
-        case 58:
+        case OBJECT_BEHAVIOR_WAVEGENERATOR:
             obj_init_wavegenerator(obj, (LevelObjectEntry_WaveGenerator *)entry, arg2);
             break;
-        case 60:
+        case OBJECT_BEHAVIOR_BUTTERFLY:
             obj_init_butterfly(obj, (LevelObjectEntry_Butterfly *)entry);
             break;
-        case 61:
+        case OBJECT_BEHAVIOR_PARKWARDEN:
             obj_init_parkwarden(obj, (LevelObjectEntry_Parkwarden *)entry);
             break;
-        case 63:
+        case OBJECT_BEHAVIOR_WORLDKEY:
             obj_init_worldkey(obj, (LevelObjectEntry_WorldKey *)entry);
             break;
-        case 64:
+        case OBJECT_BEHAVIOR_BANANACREATOR:
             obj_init_bananacreator(obj, (LevelObjectEntry_BananaCreator *)entry);
             break;
-        case 65:
+        case OBJECT_BEHAVIOR_TREASURESUCKER:
             obj_init_treasuresucker(obj, (LevelObjectEntry_TreasureSucker *)entry);
             break;
-        case 67:
+        case OBJECT_BEHAVIOR_LAVASPURT:
             obj_init_lavaspurt(obj, (LevelObjectEntry_LavaSpurt *)entry);
             break;
-        case 68:
+        case OBJECT_BEHAVIOR_POSARROW:
             obj_init_posarrow(obj, (LevelObjectEntry_PosArrow *)entry);
             break;
-        case 69:
-        case 102:
+        case OBJECT_BEHAVIOR_HITTESTER:
+        case OBJECT_BEHAVIOR_103:
             obj_init_hittester(obj, (LevelObjectEntry_HitTester *)entry);
             break;
-        case 71:
-        case 94:
-        case 103:
+        case OBJECT_BEHAVIOR_72:
+        case OBJECT_BEHAVIOR_PIGHEADCOLOURS:
+        case OBJECT_BEHAVIOR_WINDSAIL:
             obj_init_dynamic_lighting_object(obj, (LevelObjectEntry_DynamicLightingObject *)entry);
             break;
-        case 95:
-        case 100:
+        case OBJECT_BEHAVIOR_96:
+        case OBJECT_BEHAVIOR_101:
             obj_init_unknown96(obj, (LevelObjectEntry_Unknown96 *)entry);
             break;
-        case 96:
-        case 101:
+        case OBJECT_BEHAVIOR_SNOWBALL:
+        case OBJECT_BEHAVIOR_102:
             obj_init_snowball(obj, (LevelObjectEntry_Snowball *)entry);
             break;
-        case 70:
+        case OBJECT_BEHAVIOR_MIDIFADE:
             obj_init_midifade(obj, (LevelObjectEntry_MidiFade *)entry);
             break;
-        case 111:
+        case OBJECT_BEHAVIOR_MIDIFADEPOINT:
             obj_init_midifadepoint(obj, (LevelObjectEntry_MidiFadePoint *)entry);
             break;
-        case 117:
+        case OBJECT_BEHAVIOR_MIDICHSET:
             obj_init_midichset(obj, (LevelObjectEntry_Midichset *)entry);
             break;
-        case 72:
+        case OBJECT_BEHAVIOR_EFFECTBOX:
             obj_init_effectbox(obj, (LevelObjectEntry_EffectBox *)entry);
             break;
-        case 73:
+        case OBJECT_BEHAVIOR_TROPHYCABINET:
             obj_init_trophycab(obj, (LevelObjectEntry_TrophyCab *)entry);
             break;
-        case 74:
+        case OBJECT_BEHAVIOR_BUBBLER:
             obj_init_bubbler(obj, (LevelObjectEntry_Bubbler *)entry);
             break;
-        case 75:
+        case OBJECT_BEHAVIOR_FLYCOIN:
             obj_init_flycoin(obj, (LevelObjectEntry_FlyCoin *)entry);
             break;
-        case 76:
+        case OBJECT_BEHAVIOR_GOLDENBALLOON:
             obj_init_goldenballoon(obj, (LevelObjectEntry_GoldenBalloon *)entry);
             break;
-        case 77:
+        case OBJECT_BEHAVIOR_LASERBOLT:
             obj_init_laserbolt(obj, (LevelObjectEntry_Laserbolt *)entry);
             break;
-        case 78:
+        case OBJECT_BEHAVIOR_LASERGUN:
             obj_init_lasergun(obj, (LevelObjectEntry_Lasergun *)entry);
             break;
-        case 81:
+        case OBJECT_BEHAVIOR_GROUNDZIPPER:
             obj_init_groundzipper(obj, (LevelObjectEntry_GroundZipper *)entry);
             break;
-        case 82:
+        case OBJECT_BEHAVIOR_OVERRIDEPOS:
             obj_init_overridepos(obj, (LevelObjectEntry_OverridePos *)entry);
             break;
-        case 83:
+        case OBJECT_BEHAVIOR_WIZPIGSHIP:
             obj_init_wizpigship(obj, (LevelObjectEntry_WizpigShip *)entry);
             break;
-        case 88:
+        case OBJECT_BEHAVIOR_BOOST:
             obj_init_boost(obj, (LevelObjectEntry_Boost *)entry);
             break;
-        case 87:
+        case OBJECT_BEHAVIOR_SILVERCOIN:
             obj_init_silvercoin(obj, (LevelObjectEntry_SilverCoin *)entry);
             break;
-        case 89:
+        case OBJECT_BEHAVIOR_WARDENSMOKE:
             obj_init_wardensmoke(obj, (LevelObjectEntry_WardenSmoke *)entry);
             break;
-        case 93:
+        case OBJECT_BEHAVIOR_94:
             obj_init_unknown94(obj, (LevelObjectEntry_Unknown94 *)entry, arg2);
             break;
-        case 97:
+        case OBJECT_BEHAVIOR_TELEPORT:
             obj_init_teleport(obj, (LevelObjectEntry_Teleport *)entry);
             break;
-        case 98:
-        case 99:
+        case OBJECT_BEHAVIOR_LIGHTHOUSE:
+        case OBJECT_BEHAVIOR_ROCKETSIGNPOST:
             obj_init_lighthouse_rocketsignpost(obj, (LevelObjectEntry_Lighthouse_RocketSignpost *)entry);
             break;
-        case 104:
+        case OBJECT_BEHAVIOR_RANGETRIGGER:
             obj_init_rangetrigger(obj, (LevelObjectEntry_RangeTrigger *)entry);
             break;
-        case 107:
-        case 115:
+        case OBJECT_BEHAVIOR_FIREBALL_OCTOBOMB:
+        case OBJECT_BEHAVIOR_OCTOBUBBLE:
             obj_init_fireball_octoweapon(obj, (LevelObjectEntry_Fireball_Octoweapon *)entry);
             break;
-        case 108:
+        case OBJECT_BEHAVIOR_FROG:
             obj_init_frog(obj, (LevelObjectEntry_Frog *)entry);
             break;
-        case 109:
+        case OBJECT_BEHAVIOR_SILVERCOIN_ADV2:
             obj_init_silvercoin_adv2(obj, (LevelObjectEntry_SilverCoinAdv2 *)entry);
             break;
-        case 116:
+        case OBJECT_BEHAVIOR_LEVELNAME:
             obj_init_levelname(obj, (LevelObjectEntry_LevelName *)entry);
             break;
     }
@@ -2032,242 +2032,242 @@ s32 func_80023E30(s32 arg0) {
 void run_object_loop_func(Object *obj, s32 arg1) {
     func_800B76B8(1, obj->unk4A);
     switch (obj->behaviorId) {
-        case 2:
+        case OBJECT_BEHAVIOR_SCENERY:
             obj_loop_scenery(obj, arg1);
             break;
-        case 3:
+        case OBJECT_BEHAVIOR_FISH:
             obj_loop_fish(obj, arg1);
             break;
-        case 4:
+        case OBJECT_BEHAVIOR_ANIMATOR:
             obj_loop_animator(obj, arg1);
             break;
-        case 6:
+        case OBJECT_BEHAVIOR_SMOKE:
             obj_loop_smoke(obj, arg1);
             break;
-        case 25:
+        case OBJECT_BEHAVIOR_25:
             obj_loop_unknown25(obj, arg1);
             break;
-        case 22:
+        case OBJECT_BEHAVIOR_BOMBEXPLOSION:
             obj_loop_bombexplosion(obj, arg1);
             break;
-        case 7:
+        case OBJECT_BEHAVIOR_EXIT:
             obj_loop_exit(obj, arg1);
             break;
-        case 10:
+        case OBJECT_BEHAVIOR_CAMERACONTROL:
             obj_loop_cameracontrol(obj, arg1);
             break;
-        case 11:
+        case OBJECT_BEHAVIOR_SETUPPOINT:
             obj_loop_setuppoint(obj, arg1);
             break;
-        case 12:
+        case OBJECT_BEHAVIOR_DINO_WHALE:
             obj_loop_dino_whale(obj, arg1);
             break;
-        case 13:
+        case OBJECT_BEHAVIOR_CHECKPOINT:
             obj_loop_checkpoint(obj, arg1);
             break;
-        case 30:
+        case OBJECT_BEHAVIOR_MODECHANGE:
             obj_loop_modechange(obj, arg1);
             break;
-        case 41:
+        case OBJECT_BEHAVIOR_BONUS:
             obj_loop_bonus(obj, arg1);
             break;
-        case 14:
+        case OBJECT_BEHAVIOR_DOOR:
             obj_loop_door(obj, arg1);
             break;
-        case 15:
+        case OBJECT_BEHAVIOR_FOGCHANGER:
             obj_loop_fogchanger(obj);
             break;
-        case 16:
+        case OBJECT_BEHAVIOR_AINODE:
             obj_loop_ainode(obj, arg1);
             break;
-        case 17:
+        case OBJECT_BEHAVIOR_WEAPONBALLOON:
             obj_loop_weaponballoon(obj, arg1);
             break;
-        case 23:
+        case OBJECT_BEHAVIOR_WBALLOONPOP:
             obj_loop_wballoonpop(obj, arg1);
             break;
-        case 5:
-        case 18:
+        case OBJECT_BEHAVIOR_WEAPON_TRAP:
+        case OBJECT_BEHAVIOR_WEAPON_MISSLE:
             obj_loop_weapon(obj, arg1);
             break;
-        case 26:
+        case OBJECT_BEHAVIOR_SKYCONTROL:
             obj_loop_skycontrol(obj, arg1);
             break;
-        case 28:
+        case OBJECT_BEHAVIOR_TORCH_MIST:
             obj_loop_torch_mist(obj, arg1);
             break;
-        case 29:
+        case OBJECT_BEHAVIOR_TEXSCROLL:
             obj_loop_texscroll(obj, arg1);
             break;
-        case 31:
+        case OBJECT_BEHAVIOR_STOPWATCHMAN:
             obj_loop_stopwatchman(obj, arg1);
             break;
-        case 32:
+        case OBJECT_BEHAVIOR_BANANA:
             obj_loop_banana(obj, arg1);
             break;
-        case 36:
+        case OBJECT_BEHAVIOR_BUOY_PIRATESHOP:
             obj_loop_buoy_pirateship(obj, arg1);
             break;
-        case 67:
+        case OBJECT_BEHAVIOR_LOG:
             obj_loop_log(obj, arg1);
             break;
-        case 37:
+        case OBJECT_BEHAVIOR_WEATHER:
             obj_loop_weather(obj, arg1);
             break;
-        case 38:
+        case OBJECT_BEHAVIOR_BRIDGE_WHALERAMP:
             obj_loop_bridge_whaleramp(obj, arg1);
             break;
-        case 39:
+        case OBJECT_BEHAVIOR_RAMPSWITCH:
             obj_loop_rampswitch(obj, arg1);
             break;
-        case 40:
+        case OBJECT_BEHAVIOR_SEAMONSTER:
             obj_loop_seamonster(obj, arg1);
             break;
-        case 45:
+        case OBJECT_BEHAVIOR_COLLECTEGG:
             obj_loop_collectegg(obj, arg1);
             break;
-        case 46:
+        case OBJECT_BEHAVIOR_EGGCREATOR:
             obj_loop_eggcreator(obj, arg1);
             break;
-        case 47:
+        case OBJECT_BEHAVIOR_CHARACTERFLAG:
             obj_loop_characterflag(obj, arg1);
             break;
-        case 50:
-        case 81:
-        case 85:
-        case 86:
+        case OBJECT_BEHAVIOR_50:
+        case OBJECT_BEHAVIOR_SPACESHIP:
+        case OBJECT_BEHAVIOR_BUTTERFLYBAIT:
+        case OBJECT_BEHAVIOR_86:
             obj_loop_animobject(obj, arg1);
             break;
-        case 119:
+        case OBJECT_BEHAVIOR_WIZGHOSTS:
             obj_loop_wizghosts(obj, arg1);
             break;
-        case 51:
+        case OBJECT_BEHAVIOR_ANIMCAMERA:
             obj_loop_animcamera(obj, arg1);
             break;
-        case 52:
+        case OBJECT_BEHAVIOR_INFOPOINT:
             obj_loop_infopoint(obj, arg1);
             break;
-        case 53:
+        case OBJECT_BEHAVIOR_ANIMCAR:
             obj_loop_animcar(obj, arg1);
             break;
-        case 54:
+        case OBJECT_BEHAVIOR_54:
             obj_loop_char_select(obj, arg1);
             break;
-        case 55:
+        case OBJECT_BEHAVIOR_TRIGGER:
             obj_loop_trigger(obj, arg1);
             break;
-        case 56:
+        case OBJECT_BEHAVIOR_VEHICLEANIM:
             obj_loop_vehicleanim(obj, arg1);
             break;
-        case 57:
-        case 93:
+        case OBJECT_BEHAVIOR_AIRZIPPER:
+        case OBJECT_BEHAVIOR_WATERZIPPER:
             obj_loop_airzippers_waterzippers(obj, arg1);
             break;
-        case 58:
+        case OBJECT_BEHAVIOR_58:
             obj_loop_unknown58(obj, arg1);
             break;
-        case 60:
+        case OBJECT_BEHAVIOR_WAVEPOWER:
             obj_loop_wavepower(obj);
             break;
-        case 61:
+        case OBJECT_BEHAVIOR_BUTTERFLY:
             obj_loop_butterfly(obj, arg1);
             break;
-        case 62:
+        case OBJECT_BEHAVIOR_PARKWARDEN:
             obj_loop_parkwarden(obj, arg1);
             break;
-        case 64:
-            obj_loop_worldkey(obj, arg1); //arg1=speed
+        case OBJECT_BEHAVIOR_WORLDKEY:
+            obj_loop_worldkey(obj, arg1);
             break;
-        case 65:
+        case OBJECT_BEHAVIOR_BANANACREATOR:
             obj_loop_bananacreator(obj, arg1);
             break;
-        case 66:
+        case OBJECT_BEHAVIOR_TREASURESUCKER:
             obj_loop_treasuresucker(obj, arg1);
             break;
-        case 68:
+        case OBJECT_BEHAVIOR_LAVASPURT:
             obj_loop_lavaspurt(obj, arg1);
             break;
-        case 69:
+        case OBJECT_BEHAVIOR_POSARROW:
             obj_loop_posarrow(obj, arg1);
             break;
-        case 70:
-        case 72:
-        case 103:
-        case 104:
+        case OBJECT_BEHAVIOR_HITTESTER:
+        case OBJECT_BEHAVIOR_72:
+        case OBJECT_BEHAVIOR_103:
+        case OBJECT_BEHAVIOR_WINDSAIL:
             obj_loop_hittester(obj, arg1);
             break;
-        case 96:
-        case 97:
-        case 101:
-        case 102:
+        case OBJECT_BEHAVIOR_96:
+        case OBJECT_BEHAVIOR_SNOWBALL:
+        case OBJECT_BEHAVIOR_101:
+        case OBJECT_BEHAVIOR_102:
             obj_loop_snowball(obj, arg1);
             break;
-        case 73:
+        case OBJECT_BEHAVIOR_EFFECTBOX:
             obj_loop_effectbox(obj, arg1);
             break;
-        case 74:
+        case OBJECT_BEHAVIOR_TROPHYCABINET:
             obj_loop_trophycab(obj, arg1);
             break;
-        case 75:
+        case OBJECT_BEHAVIOR_BUBBLER:
             obj_loop_bubbler(obj, arg1);
             break;
-        case 76:
+        case OBJECT_BEHAVIOR_FLYCOIN:
             obj_loop_flycoin(obj, arg1);
             break;
-        case 77:
+        case OBJECT_BEHAVIOR_GOLDENBALLOON:
             obj_loop_goldenballoon(obj, arg1);
             break;
-        case 78:
+        case OBJECT_BEHAVIOR_LASERBOLT:
             obj_loop_laserbolt(obj, arg1);
             break;
-        case 79:
+        case OBJECT_BEHAVIOR_LASERGUN:
             obj_loop_lasergun(obj, arg1);
             break;
-        case 80:
+        case OBJECT_BEHAVIOR_GBPARKWARDEN:
             obj_loop_gbparkwarden(obj, arg1);
             break;
-        case 82:
+        case OBJECT_BEHAVIOR_GROUNDZIPPER:
             obj_loop_groundzipper(obj, arg1);
             break;
-        case 84:
+        case OBJECT_BEHAVIOR_WIZPIGSHIP:
             obj_loop_wizpigship(obj, arg1);
             break;
-        case 88:
-        case 110:
+        case OBJECT_BEHAVIOR_SILVERCOIN:
+        case OBJECT_BEHAVIOR_SILVERCOIN_ADV2:
             obj_loop_silvercoin(obj, arg1);
             break;
-        case 90:
+        case OBJECT_BEHAVIOR_WARDENSMOKE:
             obj_loop_wardensmoke(obj, arg1);
             break;
-        case 94:
+        case OBJECT_BEHAVIOR_94:
             obj_loop_unknown94(obj, arg1);
             break;
-        case 98:
+        case OBJECT_BEHAVIOR_TELEPORT:
             obj_loop_teleport(obj, arg1);
             break;
-        case 105:
+        case OBJECT_BEHAVIOR_RANGETRIGGER:
             obj_loop_rangetrigger(obj, arg1);
             break;
-        case 100:
+        case OBJECT_BEHAVIOR_ROCKETSIGNPOST:
             obj_loop_rocketsignpost(obj, arg1);
             break;
-        case 108:
-        case 116:
+        case OBJECT_BEHAVIOR_FIREBALL_OCTOBOMB:
+        case OBJECT_BEHAVIOR_OCTOBUBBLE:
             obj_loop_fireball_octoweapon(obj, arg1);
             break;
-        case 109:
+        case OBJECT_BEHAVIOR_FROG:
             obj_loop_frog(obj, arg1);
             break;
-        case 111:
+        case OBJECT_BEHAVIOR_TTDOOR:
             obj_loop_ttdoor(obj, arg1);
             break;
-        case 113:
+        case OBJECT_BEHAVIOR_DOOROPENER:
             obj_loop_dooropener(obj, arg1);
             break;
-        case 115:
+        case OBJECT_BEHAVIOR_PIGROCKETEER:
             obj_loop_pigrocketeer(obj, arg1);
             break;
-        case 117:
+        case OBJECT_BEHAVIOR_LEVELNAME:
             obj_loop_levelname(obj, arg1);
             break;
     }
