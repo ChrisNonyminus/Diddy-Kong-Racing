@@ -31,6 +31,7 @@ namespace fs = std::filesystem;
 #include "extract/extract_menutext.h"
 #include "extract/extract_levelname.h"
 #include "extract/extract_levelheader.h"
+#include "extract/extract_levelobjtranstable.h"
 #include "extract/extract_sprite.h"
 #include "extract/extract_textures.h"
 #include "extract/extract_ttghost.h"
@@ -73,5 +74,6 @@ private:
     std::string subfolder;
     
     ROM *rom;
-    std::vector<ExtractInfo> extractions;
+    std::vector<int> extractionKeys;
+    std::unordered_map<int, std::vector<ExtractInfo>> extractionsMap;
 };

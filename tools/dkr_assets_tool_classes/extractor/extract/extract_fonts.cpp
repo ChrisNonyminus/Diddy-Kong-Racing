@@ -87,3 +87,4 @@ ExtractFonts::ExtractFonts(std::string key, std::vector<uint8_t> data, std::stri
 
 ExtractFonts::~ExtractFonts(){
 }
+

@@ -1,7 +1,7 @@
 #ifndef _LEVEL_OBJECT_ENTRIES_H_
 #define _LEVEL_OBJECT_ENTRIES_H_
 
-    /* Size: 8 bytes. Shared across every entry. */
+/* Size: 8 bytes. Shared across every entry. */
 typedef struct LevelObjectEntryCommon {
     u8 object_id; // 9-bit object ID to load (uses size's MSB).
     u8 size; // 7-bit total entry length (MSB is used in object_id).
